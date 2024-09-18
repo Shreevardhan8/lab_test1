@@ -1,0 +1,61 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+
+def meandailytemp(info):
+    return np.mean(info, axis=0)
+    
+cities = ['A', ' B', ' C', ' D']
+temperature = np.array([
+    [30, 32, 31, 29, 28, 27, 26],  
+    [35, 34, 36, 33, 32, 31, 30],  
+    [25, 26, 27, 28, 29, 30, 31],  
+    [22, 23, 24, 25, 26, 27, 28] ])
+
+average = np.mean(temperature, axis=1)
+maximum = np.max(temperature, axis=1)
+minimum = np.min(temperature, axis=1)
+
+
+print(average)
+print()
+print(maximum)
+print()
+print(minimum)
+print()
+
+
+
+
+meandailytemp = meandailytemp(temperature)
+
+print("Average")
+days = ['D 1', 'D 2', 'D 3', 'D 4', 'D 5', 'D 6', 'D 7']
+for day, av_temp in zip(days, meandailytemp):
+    print("f{day}:  {av_temp:.2f}")
+
+
+plt.figure(figsize=(6, 4))
+for i, city in enumerate(cities):
+    plt.plot(days, temperature[i], label=city)
+    
+    
+plt.title('Temperature for Over 7 Days')
+plt.xlabel('D')
+plt.ylabel('Temperature ')
+plt.legend("upper left")
+
+plt.show()
+
+
+ranges = maximum - minimum
+
+
+plt.figure(figsize=(6, 4))
+plt.bar(cities, ranges, color='pink')
+plt.title('Temperature Range Analysis')
+plt.xlabel('Cities')
+plt.ylabel('Temperature Range (°C)')
+
+plt.show()
+
